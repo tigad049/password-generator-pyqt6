@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Password Generator")
-        self.setFixedSize(QSize(400, 600))
+        self.setFixedSize(QSize(400, 300))
         
         widgets = {}
         layouts = {}
@@ -31,9 +31,22 @@ class MainWindow(QMainWindow):
         widgets[0] = title_label = QLabel("Password Generator")
         widgets[1] = generated_password_label = QLabel("Generate a password!")
         
-        font = generated_password_label.font()
-        font.setPointSize(24)
-        generated_password_label.setFont(font)
+        # Move title to top left of the layout
+        title_label.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
+        
+        # Move password label to the bottom left of the layout
+        generated_password_label.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignLeft)
+        
+        # Set title font size
+        title_font = title_label.font()
+        title_font.setPointSize(12)
+        title_label.setFont(title_font)
+        
+        # Set password font size and make it bold
+        password_font = generated_password_label.font()
+        password_font.setPointSize(20)
+        password_font.setBold(True)
+        generated_password_label.setFont(password_font)
         
         # Add text to vertical layout
         layouts[0] = labels_layout = QVBoxLayout()
