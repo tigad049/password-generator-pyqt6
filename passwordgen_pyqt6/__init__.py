@@ -26,6 +26,21 @@ class MainWindow(QMainWindow):
         widgets = {}
         layouts = {}
         
+        # TEXT LABEL WIDGETS
+        # Create title and password placeholder
+        widgets[0] = title_label = QLabel("Password Generator")
+        widgets[1] = generated_password_label = QLabel("Generate a password!")
+        
+        font = generated_password_label.font()
+        font.setPointSize(24)
+        generated_password_label.setFont(font)
+        
+        # Add text to vertical layout
+        layouts[0] = labels_layout = QVBoxLayout()
+        for widget in widgets:
+            labels_layout.addWidget(widgets[widget])
+        widgets.clear()
+        
         # BUTTON WIDGETS
         # Create buttons
         widgets[0] = generate_button = QPushButton("Generate")
