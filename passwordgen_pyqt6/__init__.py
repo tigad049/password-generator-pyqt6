@@ -66,17 +66,28 @@ class MainWindow(QMainWindow):
         # Create symbol edit box
         widgets[4] = symbols_lineedit = QLineEdit("@%+\\/'!#$^?:,(){}[]~`-_.")
         
-        # Create password length controls
+        # Create label for password length controls
         widgets[5] = length_label = QLabel("Password Length")
-        widgets[6] = length_slider = QSlider(Qt.Orientation.Horizontal)
-        widgets[7] = length_spinbox = QSpinBox()
-        length_slider.setRange(3, 100)
-        length_spinbox.setRange(3, 100)
         
         # Add password options widgets to vertical layout
         layouts[2] = password_options_layout = QVBoxLayout()
         for widget in widgets:
             password_options_layout.addWidget(widgets[widget])
+        widgets.clear()
+        
+        # PASSWORD LENGTH CONTROLS
+        # Create password length controls
+        widgets[0] = length_slider = QSlider(Qt.Orientation.Horizontal)
+        widgets[1] = length_spinbox = QSpinBox()
+        
+        # Set ranges
+        length_slider.setRange(3, 100)
+        length_spinbox.setRange(3, 100)
+        
+        # Add password length controls to horizontal layout
+        layouts[3] = password_length_layout = QHBoxLayout()
+        for widget in widgets:
+            password_length_layout.addWidget(widgets[widget])
         widgets.clear()
         
         # Create main GUI layout
