@@ -6,7 +6,8 @@ from PyQt6.QtGui import QRegularExpressionValidator
 from PyQt6.QtWidgets import (
     QApplication, 
     QMainWindow,
-    QVBoxLayout, 
+    QVBoxLayout,
+    QHBoxLayout,
     QPushButton,
     QCheckBox,
     QLineEdit,
@@ -25,6 +26,17 @@ class MainWindow(QMainWindow):
         widgets = {}
         layouts = {}
         
+        # BUTTON WIDGETS
+        # Create buttons
+        widgets[0] = generate_button = QPushButton("Generate")
+        widgets[1] = copy_button = QPushButton("Copy to Clipboard")
+        
+        # Add buttons to horizontal layout
+        layouts[1] = buttons_layout = QHBoxLayout()
+        for widget in widgets:
+            buttons_layout.addWidget(widgets[widget])
+        widgets.clear()
+        
         # "PASSWORD OPTIONS" WIDGETS
         # Create checkboxes
         widgets[0] = uppercase_checkbox = QCheckBox("Uppercase Letters")
@@ -40,13 +52,14 @@ class MainWindow(QMainWindow):
         widgets[4] = symbols_lineedit = QLineEdit("@%+\\/'!#$^?:,(){}[]~`-_.")
         
         # Create password length controls
-        widgets[5] = length_slider = QSlider(Qt.Orientation.Horizontal)
-        widgets[6] = length_spinbox = QSpinBox()
+        widgets[5] = length_label = QLabel("Password Length")
+        widgets[6] = length_slider = QSlider(Qt.Orientation.Horizontal)
+        widgets[7] = length_spinbox = QSpinBox()
         length_slider.setRange(3, 100)
         length_spinbox.setRange(3, 100)
         
-        # Add password options widgets to layout
-        layouts[0] = password_options_layout = QVBoxLayout()
+        # Add password options widgets to vertical layout
+        layouts[2] = password_options_layout = QVBoxLayout()
         for widget in widgets:
             password_options_layout.addWidget(widgets[widget])
         widgets.clear()
