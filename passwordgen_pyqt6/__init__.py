@@ -97,6 +97,20 @@ class MainWindow(QMainWindow):
         length_slider.setRange(3, 100)
         length_spinbox.setRange(3, 100)
         
+        # Set defaults
+        length_slider.setValue(12)
+        length_spinbox.setValue(12)
+        
+        # Connect values of slider and spinbox to display correctly
+        def change_length_slider_value(value):
+            length_slider.setValue(value)
+        
+        def change_length_spinbox_value(value):
+            length_spinbox.setValue(value)
+        
+        length_slider.valueChanged.connect(change_length_spinbox_value)
+        length_spinbox.valueChanged.connect(change_length_slider_value)
+        
         # Add password length controls to horizontal layout
         layouts[3] = password_length_layout = QHBoxLayout()
         for widget in widgets:
