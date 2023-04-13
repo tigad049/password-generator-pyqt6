@@ -23,6 +23,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Password Generator")
         self.setFixedSize(QSize(400, 300))
         
+        def add_widgets_to_layout(widgets, layout):
+            for widget_num in widgets:
+                layout.addWidget(widgets[widget_num])
+        
         widgets = {}
         layouts = {}
         
@@ -50,8 +54,7 @@ class MainWindow(QMainWindow):
         
         # Add text to vertical layout
         layouts[0] = labels_layout = QVBoxLayout()
-        for widget in widgets:
-            labels_layout.addWidget(widgets[widget])
+        add_widgets_to_layout(widgets, labels_layout)
         widgets.clear()
         
         # BUTTON WIDGETS
@@ -61,8 +64,7 @@ class MainWindow(QMainWindow):
         
         # Add buttons to horizontal layout
         layouts[1] = buttons_layout = QHBoxLayout()
-        for widget in widgets:
-            buttons_layout.addWidget(widgets[widget])
+        add_widgets_to_layout(widgets, buttons_layout)
         widgets.clear()
         
         # "PASSWORD OPTIONS" WIDGETS
@@ -84,8 +86,7 @@ class MainWindow(QMainWindow):
         
         # Add password options widgets to vertical layout
         layouts[2] = password_options_layout = QVBoxLayout()
-        for widget in widgets:
-            password_options_layout.addWidget(widgets[widget])
+        add_widgets_to_layout(widgets, password_options_layout)
         widgets.clear()
         
         # PASSWORD LENGTH CONTROLS
@@ -113,8 +114,7 @@ class MainWindow(QMainWindow):
         
         # Add password length controls to horizontal layout
         layouts[3] = password_length_layout = QHBoxLayout()
-        for widget in widgets:
-            password_length_layout.addWidget(widgets[widget])
+        add_widgets_to_layout(widgets, password_length_layout)
         widgets.clear()
         
         # Create main GUI layout
