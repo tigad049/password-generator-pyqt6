@@ -81,6 +81,11 @@ class MainWindow(QMainWindow):
         # Create symbol edit box
         widgets[4] = symbols_lineedit = QLineEdit("@%+\\/'!#$^?:,(){}[]~`-_.")
         
+        def disable_lineedit(value):
+            symbols_lineedit.setEnabled(value)
+        
+        symbols_checkbox.stateChanged.connect(disable_lineedit)
+        
         # Create label for password length controls
         widgets[5] = length_label = QLabel("Password Length")
         
