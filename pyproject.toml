@@ -7,6 +7,7 @@ authors = ["tigad049 <tigad049@hsd.k12.or.us>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 PyQt6 = "^6.4.2"
+numpy = "^1.24.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
