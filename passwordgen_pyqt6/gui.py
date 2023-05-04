@@ -1,4 +1,4 @@
-import sys, time, random, string, numpy
+import sys, controller
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import (
     QApplication,
@@ -139,41 +139,12 @@ class MainWindow(QMainWindow):
         use_uppercase = self.uppercase_checkbox.isChecked()
         use_numbers = self.numbers_checkbox.isChecked()
         use_symbols = self.symbols_checkbox.isChecked()
+        symbols_string = self.symbols_lineedit.text()
         password_length = int(self.length_spinbox.value())
-
-        lowercase_str = string.ascii_lowercase
-        uppercase_str = string.ascii_uppercase
-        numbers_str = string.digits
-        symbols_str = self.symbols_lineedit.text()
-
-        unix_timestamp = int(time.time())
-        random_number = 0
-        for i in range(300):
-            random_number += int(random.randint(0, 100))
         
-        if random_number > 2**32:
-            random_number = 2**32
+        password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
         
-        random_seed = int(unix_timestamp / random_number)
-        random.seed(random_seed)
-
-        accepted_chars = ""
-        if use_lowercase:
-            accepted_chars += "".join(lowercase_str)
-
-        if use_uppercase:
-            accepted_chars += "".join(uppercase_str)
-        
-        if use_numbers:
-            accepted_chars += "".join(numbers_str)
-
-        if use_symbols:
-            accepted_chars += "".join(symbols_str)
-
-        numpy.random.seed(random_seed)
-        generated_password = list(numpy.random.choice(list(accepted_chars), password_length))
-        generated_password = "".join(generated_password)
-        print(generated_password)
+        self.generated_password_label.setText(password_string)
 
 app = QApplication(sys.argv)
 
