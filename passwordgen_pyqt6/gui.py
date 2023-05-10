@@ -44,10 +44,10 @@ class MainWindow(QMainWindow):
         title_font.setPointSize(12)
         title_label.setFont(title_font)
 
-        # Set password font size and make it bold
+        # Set password font and size
         password_font = self.generated_password_label.font()
         password_font.setPointSize(20)
-        password_font.setBold(True)
+        password_font.setFamily("Consolas")
         self.generated_password_label.setFont(password_font)
 
         # Add text to vertical layout
