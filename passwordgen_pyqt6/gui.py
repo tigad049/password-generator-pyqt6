@@ -1,4 +1,4 @@
-import sys, controller, pyclip, time
+import sys, controller, pyclip
 from PyQt6.QtCore import QSize, Qt, QTimer
 from PyQt6.QtWidgets import (
     QApplication,
