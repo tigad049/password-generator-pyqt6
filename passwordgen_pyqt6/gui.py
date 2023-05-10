@@ -1,5 +1,5 @@
-import sys, controller
-from PyQt6.QtCore import QSize, Qt
+import sys, controller, pyclip, time
+from PyQt6.QtCore import QSize, Qt, QTimer
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -61,6 +61,20 @@ class MainWindow(QMainWindow):
         widgets[1] = self.copy_button = QPushButton("Copy to Clipboard")
 
         self.generate_button.clicked.connect(self.generate_password)
+
+        self.clipboard_button_timer = QTimer()
+
+        def change_copy_button_text():
+            self.copy_button.setText("Copy to Clipboard")
+            self.clipboard_button_timer.stop()
+
+        def copy_to_clipboard():
+            pyclip.copy(self.generated_password_label.text())
+            self.copy_button.setText("Copied!")
+            self.clipboard_button_timer.timeout.connect(change_copy_button_text)
+            self.clipboard_button_timer.start(2000)
+
+        self.copy_button.clicked.connect(copy_to_clipboard)
 
         # Add buttons to horizontal layout
         layouts[1] = buttons_layout = QHBoxLayout()
@@ -141,10 +155,12 @@ class MainWindow(QMainWindow):
         use_symbols = self.symbols_checkbox.isChecked()
         symbols_string = self.symbols_lineedit.text()
         password_length = int(self.length_spinbox.value())
-        
+
         password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
-        
+
         self.generated_password_label.setText(password_string)
+        self.clipboard_button_timer.stop()
+        self.copy_button.setText("Copy to Clipboard")
 
 app = QApplication(sys.argv)
 
