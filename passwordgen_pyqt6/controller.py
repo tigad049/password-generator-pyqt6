@@ -16,7 +16,6 @@ def get_password(lowercase: bool, uppercase: bool, numbers: bool, symbols: bool,
         random_number = 2**32
     
     random_seed = int(unix_timestamp / random_number)
-    random.seed(random_seed)
 
     accepted_chars = ""
     if lowercase:
