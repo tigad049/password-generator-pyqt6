@@ -1,5 +1,5 @@
 import sys, controller, pyclip
-from PyQt6.QtCore import QSize, Qt, QTimer
+from PyQt6.QtCore import QSize, Qt, QTimer, QRect
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -19,7 +19,10 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Password Generator")
-        self.setFixedSize(QSize(400, 300))
+        self.resize(QSize(400, 300))
+        
+        # Lock people from resizing the height of the window
+        self.setFixedHeight(300)
 
         def add_widgets_to_layout(widgets, layout):
             for widget_num in widgets:
