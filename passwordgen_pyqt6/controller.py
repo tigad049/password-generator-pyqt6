@@ -28,6 +28,8 @@ def get_password(lowercase: bool, uppercase: bool, numbers: bool, symbols: bool,
         accepted_chars += "".join(numbers_str)
 
     if symbols:
+        if symbols_str == "":
+            symbols_str = "@%+\/'!#$^?:,(){}[]~`-_."
         accepted_chars += "".join(symbols_str)
 
     if accepted_chars == "":

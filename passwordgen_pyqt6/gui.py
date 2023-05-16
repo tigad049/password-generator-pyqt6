@@ -93,7 +93,7 @@ class MainWindow(QMainWindow):
             widgets[i].setCheckState(Qt.CheckState.Checked)
 
         # Create symbol edit box
-        widgets[4] = self.symbols_lineedit = QLineEdit("@%+\\/'!#$^?:,(){}[]~`-_.")
+        widgets[4] = self.symbols_lineedit = QLineEdit("@%+\/'!#$^?:,(){}[]~`-_.")
 
         def disable_lineedit(value):
             self.symbols_lineedit.setEnabled(value)
@@ -157,6 +157,9 @@ class MainWindow(QMainWindow):
         password_length = int(self.length_spinbox.value())
 
         password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
+        
+        if symbols_string == "":
+            self.symbols_lineedit.setText("@%+\/'!#$^?:,(){}[]~`-_.")
 
         self.generated_password_label.setText(password_string)
         self.clipboard_button_timer.stop()
