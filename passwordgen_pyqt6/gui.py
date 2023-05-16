@@ -155,8 +155,6 @@ class MainWindow(QMainWindow):
         use_symbols = self.symbols_checkbox.isChecked()
         symbols_string = self.symbols_lineedit.text()
         password_length = int(self.length_spinbox.value())
-
-        password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
         
         # Remove alphanumeric characters from symbol string
         for i in symbols_string:
@@ -168,6 +166,8 @@ class MainWindow(QMainWindow):
 
         if symbols_string == "":
             self.symbols_lineedit.setText("@%+\/'!#$^?:,(){}[]~`-_.")
+        
+        password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
 
         self.generated_password_label.setText(password_string)
         self.clipboard_button_timer.stop()
