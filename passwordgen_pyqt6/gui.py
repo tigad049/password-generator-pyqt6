@@ -158,6 +158,14 @@ class MainWindow(QMainWindow):
 
         password_string = controller.get_password(use_lowercase, use_uppercase, use_numbers, use_symbols, symbols_string, password_length)
         
+        # Remove alphanumeric characters from symbol string
+        for i in symbols_string:
+            if i.isalpha() or i.isnumeric():
+                symbols_string = symbols_string.replace(i, "", 1)
+        
+        # Remove duplicates from symbol string
+        self.symbols_lineedit.setText("".join(dict.fromkeys(symbols_string)))
+
         if symbols_string == "":
             self.symbols_lineedit.setText("@%+\/'!#$^?:,(){}[]~`-_.")
 
