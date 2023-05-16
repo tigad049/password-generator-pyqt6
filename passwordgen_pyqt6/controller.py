@@ -19,18 +19,18 @@ def get_password(lowercase: bool, uppercase: bool, numbers: bool, symbols: bool,
 
     accepted_chars = ""
     if lowercase:
-        accepted_chars += "".join(lowercase_str)
+        accepted_chars += lowercase_str
 
     if uppercase:
-        accepted_chars += "".join(uppercase_str)
+        accepted_chars += uppercase_str
     
     if numbers:
-        accepted_chars += "".join(numbers_str)
+        accepted_chars += numbers_str
 
     if symbols:
         if symbols_str == "":
             symbols_str = "@%+\/'!#$^?:,(){}[]~`-_."
-        accepted_chars += "".join(symbols_str)
+        accepted_chars += symbols_str
 
     if accepted_chars == "":
         generated_password = "No available characters!"
@@ -40,4 +40,5 @@ def get_password(lowercase: bool, uppercase: bool, numbers: bool, symbols: bool,
         generated_password = list(numpy.random.choice(list(accepted_chars), length))
         generated_password = "".join(generated_password)
     
+    print(accepted_chars)
     return generated_password
