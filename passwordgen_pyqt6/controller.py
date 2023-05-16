@@ -40,5 +40,4 @@ def get_password(lowercase: bool, uppercase: bool, numbers: bool, symbols: bool,
         generated_password = list(numpy.random.choice(list(accepted_chars), length))
         generated_password = "".join(generated_password)
     
-    print(accepted_chars)
     return generated_password
